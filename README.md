@@ -1,0 +1,1 @@
+# Kwiz - Web extension
