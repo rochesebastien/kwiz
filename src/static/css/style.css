@@ -1,0 +1,13 @@
+body {
+    width: 200px;
+    padding: 10px;
+}
+
+.popup-container {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
