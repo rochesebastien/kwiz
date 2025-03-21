@@ -1,35 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+/* Existing styles */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --color-primary: #8704EE;
-    --color-secondary:#8E01FE;
+    --color-secondary: #8E01FE;
     --text-color: #FFFFFF;
-    --bg-color:#181717;
+    --bg-color: #181717;
     --text-size: 50px;
-    --text-font:"Rubik", sans-serif;
+    --text-font: "Rubik", sans-serif;
+    --title-font: "Rubik Mono One", sans-serif;
 }
 
 body {
     width: 350px;
-    padding: 10px;
     border-radius: 20px;
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--text-font);
     text-align: center;
+    border: 2px solid var(--color-primary);
+    overflow: hidden;
+    margin: 0;
+    /* Ensure no margin around the body */
+    height: 100vh;
+    /* Ensure the body takes full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 10px;
+    /* background-color: red; */
+}
+
+.popup-header .actions {
+    border: none;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.popup-header button {
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
 }
 
 .popup-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* margin-top: 20px;  */
+    /* border-radius: 20px;  */
+    background-color: var(--bg-color);
+    /* padding: 20px; */
+}
+
+.popup-container p {
+    font-family: var(--text-font, 'Rubrik') !important;
     text-align: center;
 }
 
-input {
-    width: 100%;
-    margin-bottom: 10px;
+.action-btn {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: var(--title-font, 'Rubik Mono One') !important;
 }

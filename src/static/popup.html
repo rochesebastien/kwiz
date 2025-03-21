@@ -6,21 +6,31 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Kwiz</title>
 </head>
-<body>
-    <div id="welcomePage" class="popup-container">
-        
-        <h2>Bienvenue sur Kwiz</h2>
-        <p>Ceci est votre première utilisation de l'extension.</p>
-        <button id="startButton">Commencer</button>
+<body class="popup-container">
+    <div class="popup-header">
+        <img src="/src/images/logo.png" alt="" srcset="">
+        <div class="actions">
+            <button>
+                <img src="/src/images/icons/refresh.svg" alt="">
+            </button>
+            <button>
+                <img src="/src/images/icons/gear.svg" alt="">
+            </button>
+        </div>
+    </div>
+    <div id="welcomePage">
+        <p>Answers your quiz in one click using AI</p>
+        <button id="startButton" class="action-btn">Get started</button>
     </div>
 
-    <div id="apiKeyPage" class="popup-container" style="display: none;">
-        <label for="apiKeyInput">Entrez votre clé API OpenAI:</label>
+    <div id="apiKeyPage" style="display: none;">
+        <label for="apiKeyInput">To use this extension, you need to give your OpenAI API Key</label>
         <input type="text" id="apiKeyInput" placeholder="Enter API key...">
-        <button id="saveApiKeyButton">Enregistrer</button>
+        <span>You can add more account later ...</span>
+        <button id="saveApiKeyButton">Setting up</button>
     </div>
 
-    <div id="quizSelectionPage" class="popup-container" style="display: none;">
+    <div id="quizSelectionPage" style="display: none;">
         <h2>Choisissez le type de quiz</h2>
         <button class="quizButton" data-quiz="openclassroom">Openclassroom</button>
         <button class="quizButton" data-quiz="moodle">Moodle</button>
