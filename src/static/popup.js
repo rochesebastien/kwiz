@@ -1,41 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var openaiButton = document.getElementById('openaiButton');
+    var startButton = document.getElementById('startButton');
+    var saveApiKeyButton = document.getElementById('saveApiKeyButton');
+    var quizButtons = document.querySelectorAll('.quizButton');
 
-    openaiButton.addEventListener('click', function () {
-        // Récupérer le texte de l'input
-        var inputText = document.getElementById('inputText').value;
-
-        // Faire l'appel API à OpenAI
-        callOpenAPI(inputText);
+    startButton.addEventListener('click', function () {
+        showPage('apiKeyPage');
     });
-});
 
-function callOpenAPI(text) {
-    // Remplacez "VOTRE_CLE_API" par votre clé API OpenAI
-    var apiKey = "";
-    var apiUrl = "https://api.openai.com/v1/engines/davinci/completions";
-
-    // Construire la requête
-    var requestData = {
-        prompt: text,
-        max_tokens: 150
-    };
-
-    // Faire l'appel API avec fetch
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + apiKey
-        },
-        body: JSON.stringify(requestData)
-    })
-        .then(response => {
-            console.log(response);
-            alert(response)
+    saveApiKeyButton.addEventListener('click', function () {
+        var apiKey = document.getElementById('apiKeyInput').value;
+        if (apiKey) {
+            localStorage.setItem('openaiApiKey', apiKey);
+            showPage('quizSelectionPage');
+        } else {
+            alert('Veuillez entrer une clé API.');
         }
-        )
-        .catch(error => {
-            console.error('Error:', error);
+    });
+
+    quizButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var quizType = button.getAttribute('data-quiz');
+            console.log('Quiz type selected:', quizType);
+            // Ajoutez ici la logique pour récupérer les questions de la page
         });
-}
+    });
+
+    function showPage(pageId) {
+        document.getElementById('welcomePage').style.display = 'none';
+        document.getElementById('apiKeyPage').style.display = 'none';
+        document.getElementById('quizSelectionPage').style.display = 'none';
+        document.getElementById(pageId).style.display = 'block';
+    }
+
+    // Vérifiez si c'est la première utilisation ou si la clé API est déjà enregistrée
+    var apiKey = localStorage.getItem('openaiApiKey');
+    if (!apiKey) {
+        showPage('welcomePage');
+    } else {
+        showPage('quizSelectionPage');
+    }
+});

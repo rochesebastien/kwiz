@@ -7,11 +7,26 @@
     <title>OpenAI Extension</title>
 </head>
 <body>
-    <div class="popup-container">
-        <label for="inputText">Text to send to OpenAI:</label>
-        <input type="text" id="inputText" placeholder="Enter text...">
-        <button id="openaiButton">Send to OpenAI</button>
+    <div id="welcomePage" class="popup-container">
+        <h2>Bienvenue</h2>
+        <p>Ceci est votre première utilisation de l'extension.</p>
+        <button id="startButton">Commencer</button>
     </div>
+
+    <div id="apiKeyPage" class="popup-container" style="display: none;">
+        <label for="apiKeyInput">Entrez votre clé API OpenAI:</label>
+        <input type="text" id="apiKeyInput" placeholder="Enter API key...">
+        <button id="saveApiKeyButton">Enregistrer</button>
+    </div>
+
+    <div id="quizSelectionPage" class="popup-container" style="display: none;">
+        <h2>Choisissez le type de quiz</h2>
+        <button class="quizButton" data-quiz="openclassroom">Openclassroom</button>
+        <button class="quizButton" data-quiz="moodle">Moodle</button>
+        <button class="quizButton" data-quiz="kahoot">Kahoot</button>
+        <button class="quizButton" data-quiz="googleforms">Google Forms</button>
+    </div>
+
     <script src="./popup.js"></script>
 </body>
 </html>
