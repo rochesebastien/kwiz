@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var startButton = document.getElementById('startButton');
     var saveApiKeyButton = document.getElementById('saveApiKeyButton');
+    var deleteApiKeyButton = document.getElementById('deleteApiKeyButton');
     var quizButtons = document.querySelectorAll('.quizButton');
 
     startButton.addEventListener('click', function () {
@@ -10,11 +11,19 @@ document.addEventListener('DOMContentLoaded', function () {
     saveApiKeyButton.addEventListener('click', function () {
         var apiKey = document.getElementById('apiKeyInput').value;
         if (apiKey) {
-            localStorage.setItem('openaiApiKey', apiKey);
-            showPage('quizSelectionPage');
+            chrome.storage.sync.set({ 'openaiApiKey': apiKey }, function () {
+                showPage('quizSelectionPage');
+            });
         } else {
             alert('Veuillez entrer une clé API.');
         }
+    });
+
+    deleteApiKeyButton.addEventListener('click', function () {
+        chrome.storage.sync.remove('openaiApiKey', function () {
+            alert('Clé API supprimée.');
+            showPage('apiKeyPage');
+        });
     });
 
     quizButtons.forEach(function (button) {
@@ -33,10 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Vérifiez si c'est la première utilisation ou si la clé API est déjà enregistrée
-    var apiKey = localStorage.getItem('openaiApiKey');
-    if (!apiKey) {
-        showPage('welcomePage');
-    } else {
-        showPage('quizSelectionPage');
-    }
+    chrome.storage.sync.get('openaiApiKey', function (data) {
+        if (!data.openaiApiKey) {
+            showPage('welcomePage');
+        } else {
+            showPage('quizSelectionPage');
+        }
+    });
 });
